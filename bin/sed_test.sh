@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 #===========================================================
 # sedコマンド学習用シェルスクリプト
 # ファイル自動置換シェルスクリプト
@@ -29,15 +29,17 @@ file_name_after="${file_name}_after"	#置換後出力されたファイル名格
 #===========================================================
 # 開始処理
 #===========================================================
-if test ${file_name} = "" ; then 
+if test "${file_name}" = "" ; then 
 	echo "引数が指定されていません。"
 	exit 1 
-elif test -d ${file_name} ; then
+elif test -d "${file_name}" ; then
 	echo "指定されているファイルがありません。"
 	exit 1
 fi
 
-cnt_word=$(cat ${file_name} | grep -wc ${Substi_befoar})
+cnt_word=$(cat ${file_name} | grep ${Substi_befoar} | wc -l)
+
+echo "${cnt_word}"
 
 if test ${cnt_word} -eq 0 ; then
 	echo "置換対象の文字列は存在しないようです。"
